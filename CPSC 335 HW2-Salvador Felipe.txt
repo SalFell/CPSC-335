@@ -1,0 +1,32 @@
+Answer for Question 1:
+
+int Cashiers_algorithm(vector<int> D, int n) {
+    int coin_count = 0;
+    vector<int> coins_used;
+
+    for (int i = D.size() - 1; i >= 0; i--) {
+        while (n >= D[i]) {
+            n -= D[i];
+            coin_count++;
+            coins_used.push_back(D[i]);
+        }
+    }
+
+    // print the denominations used
+    cout << "[";
+    for (int i = 0; i < coins_used.size() - 1; i++) {
+        cout << coins_used[i] << ", ";
+    }
+    cout << coins_used[coins_used.size() - 1] << "]" << endl;
+
+    return coin_count;
+}
+
+Here's how the algorithm works:
+
+coin_count keeps track of the number of coins used to make change.
+coins_used keeps track of the denominations of the coins used to make change.
+We iterate through the denominations in D, starting with the largest denomination and moving to the smallest.
+For each denomination, we use a while loop to repeatedly subtract that denomination from n as long as n is greater than or equal to that denomination. This ensures that we use the largest denomination possible without exceeding the remaining amount.
+Each time we subtract a coin from n, we increment coin_count and add the denomination to coins_used.
+Once we've iterated through all the denominations, we print out coins_used to show which denominations were used to make change, and return coin_count as the fewest number of coins used.
